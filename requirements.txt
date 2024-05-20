@@ -1,0 +1,4 @@
+pyirsdk
+keyboard
+flask
+python-dotenv
