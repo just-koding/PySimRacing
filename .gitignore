@@ -127,3 +127,6 @@ dmypy.json
 
 # database
 *.db
+
+#local tests
+_test_
