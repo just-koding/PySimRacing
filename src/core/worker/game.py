@@ -6,8 +6,10 @@ class IRacingWorker(BaseWorker):
     """ IRacingWorker Class manages the IRacing data scrapping """
 
     def __init__(self, *args, **kwargs):
-        self.sdk = IrSdk()
         super().__init__(*args, **kwargs)
+        self.sdk = IrSdk()
+        self.data = None
+        self.post_event("sdk_data_update", self.data)
 
     def run(self):
         """ Function called inside a thread """

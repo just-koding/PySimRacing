@@ -1,9 +1,29 @@
 """ Base Worker Definitions """
 from threading import Thread
+from collections import defaultdict
 import time
 
 
-class BaseWorker(Thread):
+class EnventBase(Thread):
+    """ Class adding events """
+
+    def __init__(self, *args, **kwargs):
+        """ __init__ """
+        super().__init__(*args, **kwargs)
+        self.subscribers = defaultdict(list)
+
+    def subscribe(self, event_type, fn):
+        """ subscribe """
+        self.subscribers[event_type].append(fn)
+
+    def post_event(self, event_type, data):
+        """ post_event """
+        if event_type in self.subscribers:
+            for fn in self.subscribers[event_type]:
+                fn(data)
+
+
+class BaseWorker(EnventBase):
     """ BaseWorker Class representing a process called in a new thread """
 
     def __init__(self, *args, **kwargs):

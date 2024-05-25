@@ -1,13 +1,21 @@
+""" App starting point """
 from core.worker.game import IRacingWorker
+from core.worker.gui import UIWorker
 
 
 def init_app():
+    """ Inits all main resources (workers) """
     try:
-        worker = IRacingWorker()
-        worker.start()
+        gui_worker = UIWorker()
+        game_worker = IRacingWorker()
+        game_worker.subscribe("sdk_data_update", gui_worker.data_update)
+        gui_worker.start()
+        game_worker.start()
+        print("App Init!")
     except KeyboardInterrupt:
         # press ctrl+c to exit
-        worker.stop()
+        game_worker.stop()
+        gui_worker.stop()
 
 
 if __name__ == '__main__':
