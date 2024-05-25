@@ -1,4 +1,4 @@
-from core.worker.data import IRacingWorker
+from core.worker.game import IRacingWorker
 
 
 def init_app():

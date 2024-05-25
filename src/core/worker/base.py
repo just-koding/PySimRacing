@@ -12,11 +12,11 @@ class BaseWorker(Thread):
         self.running = False
 
     def run(self):
-        """ run """
+        """ function called inside a thread"""
         print("BaseWorker 'run' not implemented")
 
     def start(self):
-        """ run """
+        """ start """
         # thumbnail will be resolved on second OR newly created below thread        
         self.running = True
         thread = Thread(target=self.run)
