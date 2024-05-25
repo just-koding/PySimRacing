@@ -5,18 +5,18 @@ from tkinter import ttk
 
 class Main(tk.Toplevel):
     """ Main Window """
-    def __init__(self, window):
+    def __init__(self):
+        self.window = None
         super().__init__()
-        ttk.Label(self, text='A label').pack()
-        ttk.Button(self, text='A button').pack()
-        ttk.Label(self, text='another label').pack(expand=True)
-        self.window = window
 
-    def loop(self):
+    def loop(self, callback):
         """ Function call  to start the mainloop from the window """
         self.window = tk.Tk()
         self.window.geometry('600x400')
         self.window.title('Multiple windows')
+        ttk.Label(self.window, text='A label').pack()
+        ttk.Button(self.window, text='A button', command=callback).pack()
+        ttk.Label(self.window, text='another label').pack(expand=True)
         self.window.mainloop()
 
     def stop(self):

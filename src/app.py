@@ -8,7 +8,7 @@ def init_app():
     try:
         gui_worker = UIWorker()
         game_worker = IRacingWorker()
-        game_worker.subscribe("sdk_data_update", gui_worker.data_update)
+        gui_worker.subscribe("ui_update", game_worker.ui_update)
         gui_worker.start()
         game_worker.start()
         print("App Init!")

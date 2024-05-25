@@ -9,7 +9,6 @@ class IRacingWorker(BaseWorker):
         super().__init__(*args, **kwargs)
         self.sdk = IrSdk()
         self.data = None
-        self.post_event("sdk_data_update", self.data)
 
     def run(self):
         """ Function called inside a thread """
@@ -20,3 +19,12 @@ class IRacingWorker(BaseWorker):
         """ Function to stop the thread """
         self.sdk.stop_loop()
         super().stop()
+
+    def data_update(self):
+        """ data_update """
+        print("post data_update")
+        self.post_event("data_update", None)
+
+    def ui_update(self, data):
+        """ data_update """
+        print(f"IRacingWorker ui_update {data}")

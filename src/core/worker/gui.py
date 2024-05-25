@@ -1,19 +1,17 @@
 from core.worker.base import BaseWorker
 from ui.windows import Main
-import tkinter as tk
 
 
 class UIWorker(BaseWorker):
     """ UIWorker Class manages the UI data scrapping """
 
     def __init__(self, *args, **kwargs):
-        self.window = tk.Tk()
-        self.screen = Main(self.window)
+        self.screen = Main()
         super().__init__(*args, **kwargs)
 
     def run(self):
         """ Function called inside a thread """
-        self.screen.loop()
+        self.screen.loop(self.ui_update)
 
     def stop(self):
         """ Function to stop the thread """
@@ -22,4 +20,9 @@ class UIWorker(BaseWorker):
 
     def data_update(self):
         """ data_update """
-        print("data_update")
+        print("UIWorker data_update")
+
+    def ui_update(self):
+        """ data_update """
+        print("post ui_update")
+        self.post_event("ui_update", None)
