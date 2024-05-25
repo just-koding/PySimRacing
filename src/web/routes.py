@@ -1,8 +1,8 @@
 from datetime import datetime
 from flask import render_template, request, redirect, url_for, flash
-from src.web.flask_package import app, db, bcrypt
-from src.web.flask_package.forms import RegistrationForm, LoginForm
-from src.web.flask_package.models import User
+from web.flask_package import app, db, bcrypt
+from web.flask_package.forms import RegistrationForm, LoginForm
+from web.flask_package.models import User
 from flask_login import login_user, current_user, logout_user
 
 feedbacks = []

@@ -1,7 +1,7 @@
 import pytest
 import time
 
-from src.classes.price import Price
+from classes.price import Price
 
 
 def test_insert_sql_price_values(sql_client):

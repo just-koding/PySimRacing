@@ -13,11 +13,12 @@ class BaseWorker(Thread):
 
     def run(self):
         """ run """
-        print("run")
+        print("BaseWorker 'run' not implemented")
 
     def start(self):
         """ run """
-        # thumbnail will be resolved on second OR newly created below thread
+        # thumbnail will be resolved on second OR newly created below thread        
+        self.running = True
         thread = Thread(target=self.run)
         thread.start()
 
@@ -36,7 +37,7 @@ class BaseTimerWorker(BaseWorker):
 
     def tick(self):
         """ tick """
-        print("tick")
+        print("BaseTimerWorker 'tick' not implemented")
 
     def start(self):
         """ start """

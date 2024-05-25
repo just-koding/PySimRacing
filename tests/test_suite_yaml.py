@@ -1,5 +1,5 @@
 import unittest
-from src.yml import decode_yaml_file, decode_yaml_content
+from yml import decode_yaml_file, decode_yaml_content
 
 
 class TestYamlContent(unittest.TestCase):

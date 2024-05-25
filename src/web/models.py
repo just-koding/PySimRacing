@@ -1,4 +1,4 @@
-from src.web.flask_package import db, login_manager
+from web.flask_package import db, login_manager
 from flask_login import UserMixin
 
 

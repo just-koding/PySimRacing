@@ -1,7 +1,7 @@
 import pytest
 import os
 
-from src.database import SqliteClient
+from database import SqliteClient
 
 
 @pytest.fixture

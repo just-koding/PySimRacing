@@ -18,4 +18,4 @@ db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
 
-from src.web.flask_package import routes
+from web.flask_package import routes

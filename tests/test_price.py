@@ -1,6 +1,6 @@
 import unittest
 import time
-from src.classes.price import Price
+from classes.price import Price
 
 
 class TestPrice(unittest.TestCase):
