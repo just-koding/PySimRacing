@@ -2,6 +2,7 @@
 the IRacing data from the game while running """
 import time
 import irsdk
+from core.data.event_data import SDKData
 
 
 class IrSdk():
@@ -17,6 +18,7 @@ class IrSdk():
         self.fps = 5
         # initializing ir and self
         self.ir = irsdk.IRSDK()
+        self.sdk_data = SDKData()
 
     def check_iracing(self):
         """ Validates the IRacing connection """
@@ -25,7 +27,7 @@ class IrSdk():
         elif not self.ir_connected and self.ir.startup() and self.ir.is_initialized and self.ir.is_connected:
             self.start_loop()
 
-    def loop(self):
+    def loop(self, callback):
         """ Loop function startign the process """
         while self.run_loop:
             time.sleep(1/self.fps)
@@ -33,6 +35,7 @@ class IrSdk():
                 self.ir.freeze_var_buffer_latest()
 
                 t = self.ir['SessionTime']
+                self.sdk_data.set_time(t)
                 print('session time:', t)
 
                 car_setup = self.ir['CarSetup']
@@ -44,6 +47,7 @@ class IrSdk():
                 self.ir.cam_switch_pos(self.car_number, self.cam)
             else:
                 print("Detected Disconnection from IRSDK")
+            callback(self.sdk_data)
 
     def stop_loop(self):
         """ Starts the loop process """

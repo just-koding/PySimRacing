@@ -8,7 +8,10 @@ def init_app():
     try:
         gui_worker = UIWorker()
         game_worker = IRacingWorker()
+        # when the UI sends an event the SDK will receive an "ui_update"
         gui_worker.subscribe("ui_update", game_worker.ui_update)
+        # when the SDK sends an event the UI will receive an "data_update"
+        game_worker.subscribe("data_update", gui_worker.data_update)
         gui_worker.start()
         game_worker.start()
         print("App Init!")
